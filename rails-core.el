@@ -269,9 +269,20 @@ CONTROLLER."
   (when model
     (format "test/unit/%s_test.rb" (rails-core:file-by-class model t))))
 
+(defun rails-core:model-spec-file (model)
+  "Return the rspec model spec file name for the model named MODEL."
+  (when model
+    (format "spec/models/%s_spec.rb" (rails-core:file-by-class model t))))
+
 (defun rails-core:unit-test-exist-p (model)
   "Return the unit test file name for the model named MODEL."
   (let ((test (rails-core:unit-test-file model)))
+    (when test
+      (file-exists-p (rails-core:file test)))))
+
+(defun rails-core:model-spec-exist-p (model)
+  "Return the model spec file name for the model named MODEL."
+  (let ((test (rails-core:model-spec-file model)))
     (when test
       (file-exists-p (rails-core:file test)))))
 
@@ -366,6 +377,14 @@ suffix if CUT-CONTOLLER-SUFFIX is non nil."
        (remove-postfix (rails-core:class-by-file it)
                        "Test"))
    (find-recursive-files "\\.rb$" (rails-core:file "test/unit/"))))
+
+(defun rails-core:model-specs ()
+  "Return a list of RSpec model specs."
+  (mapcar
+   #'(lambda(it)
+       (remove-postfix (rails-core:class-by-file it)
+                       "Spec"))
+   (find-recursive-files "\\.rb$" (rails-core:file "spec/models/"))))
 
 (defun rails-core:observers ()
   "Return a list of Rails observers."
@@ -506,6 +525,7 @@ If the action is nil, return all views for the controller."
         (:migration (rails-core:model-by-migration-filename (buffer-name)))
         (:model file-class)
         (:unit-test (remove-postfix file-class "Test"))
+        (:model-spec (remove-postfix file-class "Spec"))
         (:fixture (singularize-string file-class))))))
 
 (defun rails-core:current-mailer ()
@@ -517,6 +537,7 @@ If the action is nil, return all views for the controller."
       (case (rails-core:buffer-type)
         (:mailer    file-class)
         (:unit-test test)
+        (:model-spec spec)
         (:view (rails-core:class-by-file
                 (directory-file-name (directory-of-file (buffer-file-name)))))))))
 

@@ -41,6 +41,11 @@
                                        :enable (and (not (eq (rails-core:buffer-type) :unit-test))
                                                     (rails-core:unit-test-exist-p (or (rails-core:current-model)
                                                                                       (rails-core:current-mailer))))))
+        ([goto-utest]      '(menu-item "Go to Model Spec"
+                                       rails-model-layout:switch-to-model-spec
+                                       :enable (and (not (eq (rails-core:buffer-type) :model-spec))
+                                                    (rails-core:model-spec-exist-p (or (rails-core:current-model)
+                                                                                      (rails-core:current-mailer))))))
         ([goto-migration]  '(menu-item "Go to Migration"
                                        rails-model-layout:switch-to-migration
                                        :enable (and (not (eq (rails-core:buffer-type) :migration))
@@ -76,6 +81,7 @@
                  (:controller (rails-core:controller-file-by-model model))
                  (:fixture (rails-core:fixture-file model))
                  (:unit-test (rails-core:unit-test-file item))
+                 (:model-spec (rails-core:model-spec-file item))
                  (:model (rails-core:model-file model))
                  (:migration (rails-core:migration-file-by-model model)))))
     (if item
@@ -91,6 +97,7 @@
 (defun rails-model-layout:switch-to-controller () (interactive) (rails-model-layout:switch-to :controller))
 (defun rails-model-layout:switch-to-fixture () (interactive) (rails-model-layout:switch-to :fixture))
 (defun rails-model-layout:switch-to-unit-test () (interactive) (rails-model-layout:switch-to :unit-test))
+(defun rails-model-layout:switch-to-model-spec () (interactive) (rails-model-layout:switch-to :model-spec))
 (defun rails-model-layout:switch-to-model () (interactive) (rails-model-layout:switch-to :model))
 (defun rails-model-layout:switch-to-migration () (interactive) (rails-model-layout:switch-to :migration))
 
@@ -112,6 +119,8 @@
         (add-to-list 'item (cons "Controller" :controller)))
       (unless (eq type :unit-test)
         (add-to-list 'item (cons "Unit Test" :unit-test)))
+      (unless (eq type :model-spec)
+        (add-to-list 'item (cons "Model Spec" :model-spec)))
       (unless (eq type :model)
         (add-to-list 'item (cons "Model" :model))))
     (when mailer

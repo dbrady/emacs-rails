@@ -79,6 +79,7 @@
       ([goto-observers]   '("Go to Observers"        . rails-nav:goto-observers))
       ([goto-unit-tests]  '("Go to Unit Tests"       . rails-nav:goto-unit-tests))
       ([goto-func-tests]  '("Go to Functional Tests" . rails-nav:goto-functional-tests))
+      ([goto-model-specs]  '("Go to Model Specs"     . rails-nav:goto-model-specs))
       ([goto-models]      '("Go to Models"           . rails-nav:goto-models))
       ([goto-controllers] '("Go to Controllers"      . rails-nav:goto-controllers)))
     map))
@@ -89,6 +90,7 @@
       ([integration] '("Integration Tests" . rails-test:run-integration))
       ([unit]        '("Unit Tests"        . rails-test:run-units))
       ([functional]  '("Functional Tests"  . rails-test:run-functionals))
+      ([modelspecs]  '("Model Specs"       . rails-test:run-model-specs))
       ([recent]      '("Recent Tests"      . rails-test:run-recent))
       ([tests]       '("All"               . rails-test:run-all))
       ([separator]   '("--"))
@@ -228,6 +230,7 @@
   ((rails-key "\C-c g x") 'rails-nav:goto-fixtures)
   ((rails-key "\C-c g f") 'rails-nav:goto-functional-tests)
   ((rails-key "\C-c g u") 'rails-nav:goto-unit-tests)
+  ((rails-key "\C-c g s") 'rails-nav:goto-model-specs)
 
   ;; Switch
   ((kbd "<M-S-up>")      'rails-lib:run-primary-switch)
@@ -286,6 +289,7 @@
   ((rails-key "\C-c y i")   'rails-test:run-integration)
   ((rails-key "\C-c y u")   'rails-test:run-units)
   ((rails-key "\C-c y f")   'rails-test:run-functionals)
+  ((rails-key "\C-c y s")   'rails-test:run-model-specs)
   ((rails-key "\C-c #")   'rails-test:run-recent)
   ((rails-key "\C-c y a")   'rails-test:run-all)
 
