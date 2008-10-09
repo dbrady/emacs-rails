@@ -30,7 +30,9 @@
   "Minor mode for RubyOnRails models."
   :lighter " Model"
   :keymap (rails-model-layout:keymap :model)
-  (setq rails-primary-switch-func 'rails-model-layout:switch-to-unit-test)
+  ; dbrady 2008-10-09: TEMP HACK ONLY! Need to get RSpec/Test::Unit toggling working
+  ; (setq rails-primary-switch-func 'rails-model-layout:switch-to-unit-test)
+  (setq rails-primary-switch-func 'rails-model-layout:switch-to-model-spec)
   (setq rails-secondary-switch-func 'rails-model-layout:menu))
 
 (provide 'rails-model-minor-mode)

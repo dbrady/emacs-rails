@@ -63,6 +63,7 @@
       (define-keys map
         ((rails-key "m")         'rails-model-layout:switch-to-model)
         ((rails-key "u")         'rails-model-layout:switch-to-unit-test)
+        ((rails-key "s")         'rails-model-layout:switch-to-model-spec)
         ((rails-key "g")         'rails-model-layout:switch-to-migration)
         ((rails-key "c")         'rails-model-layout:switch-to-controller)
         ((rails-key "x")         'rails-model-layout:switch-to-fixture)

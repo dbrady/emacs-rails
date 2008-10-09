@@ -79,7 +79,7 @@
       ([goto-observers]   '("Go to Observers"        . rails-nav:goto-observers))
       ([goto-unit-tests]  '("Go to Unit Tests"       . rails-nav:goto-unit-tests))
       ([goto-func-tests]  '("Go to Functional Tests" . rails-nav:goto-functional-tests))
-      ([goto-model-specs]  '("Go to Model Specs"     . rails-nav:goto-model-specs))
+      ([goto-model-specs] '("Go to Model Specs"      . rails-nav:goto-model-specs))
       ([goto-models]      '("Go to Models"           . rails-nav:goto-models))
       ([goto-controllers] '("Go to Controllers"      . rails-nav:goto-controllers)))
     map))
@@ -230,7 +230,7 @@
   ((rails-key "\C-c g x") 'rails-nav:goto-fixtures)
   ((rails-key "\C-c g f") 'rails-nav:goto-functional-tests)
   ((rails-key "\C-c g u") 'rails-nav:goto-unit-tests)
-  ((rails-key "\C-c g s") 'rails-nav:goto-model-specs)
+  ((rails-key "\C-c g r") 'rails-nav:goto-model-specs)
 
   ;; Switch
   ((kbd "<M-S-up>")      'rails-lib:run-primary-switch)
